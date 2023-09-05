@@ -63,6 +63,9 @@ public class Peon extends PiezaAjedrez {
                 else if(idDESTINO.equals("negro") && colmABS==1 && filaCAM==-1){
                     return true;
                 }
+                else{
+                    return false;
+                }
             }
             else if(idORIGEN.equals("negro")){ //FICHA NEGRA
                 if(colmCAM==0 && filaCAM==1 && idDESTINO.equals("vacio")){ //MISMA COLUMNA   1 O 2 AVANCE

@@ -4,10 +4,6 @@
  */
 package espol.edu.ec.intentos;
 
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-
 /**
  *
  * @author Cykes
@@ -19,45 +15,68 @@ public class Peon extends PiezaAjedrez {
     }
 
     @Override
+    
+
+    
     public boolean esMovimientoValido(int filaOrigen, int columnaOrigen, int filaDestino, int columnaDestino) {
-        int filaCAM=filaOrigen-filaDestino;
-        int colABS=Math.abs(filaCAM);
+        int colmCAM=filaDestino-filaOrigen;
+        int colmABS= Math.abs(colmCAM);
+        int filaCAM= columnaDestino-columnaOrigen;
+
+        String idDESTINO= App.obtenerIdDeBoton(columnaDestino, filaDestino);        
+        String idORIGEN= App.obtenerIdDeBoton(columnaOrigen, filaOrigen);        
         
-        int columnaCAM=columnaOrigen-columnaDestino;
-        int filABS=Math.abs(columnaCAM);
-
-        System.out.println(columnaOrigen);
-        if(columnaOrigen==1 || columnaOrigen==6 ){
-            System.out.println("help 1");
-            if(filaOrigen==filaOrigen){
-                System.out.println("help 2");
-                if(filABS==1 || filABS==2){
+        if((columnaOrigen==1 || columnaOrigen==6)){ //FILA 1 O 6,   2 O 1 AVANCE
+            
+            if(idORIGEN.equals("blanco")){ //FICHA BLANCA
+                if(colmCAM==0 && ( filaCAM==-2 || filaCAM==-1 ) && idDESTINO.equals("vacio")){ //MISMA COLUMNA   1 O 2 AVANCE
+                    return true;
+                }
+                else if(idDESTINO.equals("negro") && colmABS==1 && filaCAM==-1){
                     return true;
                 }
                 else
                     return false;
-                
+            
+            
             }
-
-            else
-                return false;
+            else if(idORIGEN.equals("negro")){ //FICHA NEGRA
+                if(colmCAM==0 && ( filaCAM==2 || filaCAM==1 ) && idDESTINO.equals("vacio")){ //MISMA COLUMNA   1 O 2 AVANCE
+                    return true;
+                }
+                else if(idDESTINO.equals("blanco") && colmABS==1 && filaCAM==1){
+                    return true;
+                }
+                else
+                    return false;
+            }
+            
         }
-        else{
-            System.out.println("else 1");
-            if(filaOrigen==filaOrigen){
-                if(filABS==1){
+        else { // RESTO DE FILAS,  1 PASO
+            if(idORIGEN.equals("blanco")){ //FICHA BLANCA
+                if(colmCAM==0 && filaCAM==-1 && idDESTINO.equals("vacio") ){ //MISMA COLUMNA   1 O 2 AVANCE
+                    return true;
+                }
+                else if(idDESTINO.equals("negro") && colmABS==1 && filaCAM==-1){
+                    return true;
+                }
+            }
+            else if(idORIGEN.equals("negro")){ //FICHA NEGRA
+                if(colmCAM==0 && filaCAM==1 && idDESTINO.equals("vacio")){ //MISMA COLUMNA   1 O 2 AVANCE
+                    return true;
+                }
+                else if(idDESTINO.equals("blanco") && colmABS==1 && filaCAM==1){
                     return true;
                 }
                 else
                     return false;
-                
             }
-
             else{
-
-                return false;
+                System.out.println("algo esta mal else 1");
             }
-
+            
         }
+        
+        return true;
     }
 }

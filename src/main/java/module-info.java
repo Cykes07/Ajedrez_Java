@@ -1,7 +1,8 @@
-module com.mycompany.proyecto_ajedrez {
+module espol.edu.ec.intentos {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.base;
 
-    opens com.mycompany.proyecto_ajedrez to javafx.fxml;
-    exports com.mycompany.proyecto_ajedrez;
+    opens espol.edu.ec.intentos to javafx.fxml;
+    exports espol.edu.ec.intentos;
 }
